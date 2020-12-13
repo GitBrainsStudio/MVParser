@@ -1,0 +1,8 @@
+MVParser.BLL/bin
+MVParser.BLL/obj
+MVParser.DAL/bin
+MVParser.DAL/obj
+MVParser.Tests/bin
+MVParser.Tests/obj
+packages
+.vs

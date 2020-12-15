@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -50,14 +53,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IBrowserService.cs" />
+    <Compile Include="Contracts\IConvertService.cs" />
+    <Compile Include="Contracts\IProductsPageParsingService.cs" />
     <Compile Include="Contracts\IRegionChangeService.cs" />
+    <Compile Include="Contracts\IXmlReadService.cs" />
     <Compile Include="Exceptions\RegionNotFoundException.cs" />
     <Compile Include="PageObjectModels\DialogChoiseLocationProperties.cs" />
     <Compile Include="PageObjectModels\HomePageProperties.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializeObjects\SiteMap.cs" />
     <Compile Include="Services\BrowserService.cs" />
+    <Compile Include="Services\ConvertService.cs" />
+    <Compile Include="Services\ProductsPageParsingService.cs" />
     <Compile Include="Services\RegionChangeService.cs" />
+    <Compile Include="Services\XmlReadService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

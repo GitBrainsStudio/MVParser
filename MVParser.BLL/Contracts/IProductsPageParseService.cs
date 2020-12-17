@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MVParser.BLL.Contracts
 {
-    public interface IProductsPageParsingService
+    public interface IProductsPageParseService
     {
+        void StartParsing(string productsPageUrl);
     }
 }

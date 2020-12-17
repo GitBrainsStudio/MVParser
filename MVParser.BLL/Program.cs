@@ -13,10 +13,16 @@ namespace MVParser.BLL
         static void Main(string[] args)
         {
             IBrowserService browserService = new BrowserService();
+            
 
-            IRegionChangeService regionChangeService = new RegionChangeService(browserService);
+            //IRegionChangeService regionChangeService = new RegionChangeService(browserService);
 
-            regionChangeService.ChangeRegion("Уфа");
+            //regionChangeService.ChangeRegion("Уфа");
+
+            IProductsPageParseService productsPageParseService = new ProductsPageParseService(browserService);
+
+            productsPageParseService.StartParsing("https://www.mvideo.ru/noutbuki-planshety-komputery-8/noutbuki-118?from=under_search");
+
         }
     }
 }

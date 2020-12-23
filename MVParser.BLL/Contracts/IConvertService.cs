@@ -12,5 +12,7 @@ namespace MVParser.BLL.Contracts
     {
         SiteMap WriteSiteMapFromXml(XmlDocument xmlDocument);
         IEnumerable<Category> GetUniqCategoriesFromSiteMap(SiteMap siteMap);
+        double? ProductPriceConvert(string price);
+        string GetSafeFilename(string fileName);
     }
 }

@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace MVParser.BLL.Services
 {
-    public class BrowserService : IBrowserService
+    public class BrowserPoolService : IBrowserService
     {
         public IWebDriver Browser { get; }
 
-        public BrowserService()
+        public BrowserPoolService()
         {
             this.Browser = new ChromeDriver();
         }

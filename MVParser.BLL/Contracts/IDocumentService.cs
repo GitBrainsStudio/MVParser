@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace MVParser.BLL.Contracts
 {
-    public interface IProductsPageParseService
+    public interface IDocumentService
     {
-        IEnumerable<Product> GetProducts(string productsPageUrl);
+        void WriteProductsInExcel(ILogger logger, IEnumerable<Product> products, string fileName);
     }
 }

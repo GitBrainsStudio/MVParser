@@ -3,6 +3,7 @@ using MVParser.BLL.SerializeObjects;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,18 @@ namespace MVParser.BLL.Services
         private string ConvertLocProperty(string property)
         {
             return property.Replace("/f/", "$").Split('$').First();
+        }
+
+        public double? ProductPriceConvert(string price)
+        {
+            if (!String.IsNullOrEmpty(price))
+                return Convert.ToDouble(price.Replace(" ", "").Replace("₽", ""));
+            else return null;
+        }
+
+        public string GetSafeFilename(string fileName)
+        {
+            return string.Join("_", fileName.Split(Path.GetInvalidFileNameChars()));
         }
     }
 }

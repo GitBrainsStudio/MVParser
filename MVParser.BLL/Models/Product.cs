@@ -12,10 +12,12 @@ namespace MVParser.BLL.Models
         public string Title { get; }
         public string Url { get; }
      
-        public string ActualPrice { get; }
-        public string OldPrice { get; }
+        public double? ActualPrice { get; }
+        public double? OldPrice { get; }
 
-        public Product(string status, string title, string url, string actualPrice, string oldPrice)
+        public double? DiscountPercentage => (OldPrice - ActualPrice) * 100 / OldPrice;
+
+        public Product(string status, string title, string url, double? actualPrice, double? oldPrice)
         {
             this.Status = status;
             this.Title = title;

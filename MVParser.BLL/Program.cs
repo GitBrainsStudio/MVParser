@@ -1,7 +1,9 @@
 ﻿using MVParser.BLL.Contracts;
+using MVParser.BLL.Logging;
 using MVParser.BLL.Services;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +14,22 @@ namespace MVParser.BLL
     {
         static void Main(string[] args)
         {
-            IBrowserService browserService = new BrowserService();
-            
+            ILogger logger = new Logger();
+            IBrowserService browserService = new BrowserPoolService();
+            IConvertService convertService = new ConvertService();
+            IDocumentService documentService = new DocumentService();
+            IXmlReadService xmlReadService = new XmlReadService();
 
-            //IRegionChangeService regionChangeService = new RegionChangeService(browserService);
+            IProductsPageParseService productsPageParseService = new ProductsPageParseService(logger, browserService, convertService);
 
-            //regionChangeService.ChangeRegion("Уфа");
+            IRegionChangeService regionChangeService = new RegionChangeService(browserService);
+            regionChangeService.ChangeRegion(ConfigurationManager.AppSettings["regionname"]);
 
-            IProductsPageParseService productsPageParseService = new ProductsPageParseService(browserService);
-
-            productsPageParseService.StartParsing("https://www.mvideo.ru/noutbuki-planshety-komputery-8/noutbuki-118?from=under_search");
-
+            convertService.GetUniqCategoriesFromSiteMap(convertService.WriteSiteMapFromXml(xmlReadService.DownloadXml())).ToList().ForEach(c =>
+            {
+                documentService.WriteProductsInExcel(logger, productsPageParseService.GetProducts(c.loc), convertService.GetSafeFilename(c.loc));
+            });
+ 
         }
     }
 }
